@@ -20,7 +20,7 @@ public class NotificationService {
 
     private void sendEmail(String toEmail, String subject, String body) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("felipemelchior112@gmail.com");
+        message.setFrom(senderEmail);
         message.setTo(toEmail);
         message.setSubject(subject);
         message.setText(body);
