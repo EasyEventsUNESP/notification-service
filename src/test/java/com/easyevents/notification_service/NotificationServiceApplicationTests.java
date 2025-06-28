@@ -1,4 +1,4 @@
-package com.easyevents.auth_service;
+package com.easyevents.notification_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
