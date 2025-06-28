@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class NotificationController {
 
-    @Autowired
+    
     private final NotificationService notificationService;
 
     @PostMapping("/enviar")
