@@ -17,7 +17,6 @@ public class NotificationController {
 
     @PostMapping("/enviar")
     public ResponseEntity<String> send(@RequestBody EmailRequest emailRequest) {
-        notificationService.sendEmails(emailRequest);
-        return ResponseEntity.ok("Emails enviados com sucesso!");
+        return notificationService.sendEmails(emailRequest);
     }
 }
