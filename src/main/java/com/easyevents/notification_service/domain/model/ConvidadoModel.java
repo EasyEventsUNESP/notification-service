@@ -9,7 +9,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "convidado")
+@Document(value = "convidado")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Setter
 @Getter
