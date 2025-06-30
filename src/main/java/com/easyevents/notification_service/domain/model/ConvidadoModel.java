@@ -1,6 +1,6 @@
 package com.easyevents.notification_service.domain.model;
 
-import com.easyevents.guest_management_service.domain.enumerator.StatusConfirmacao;
+import com.easyevents.notification_service.domain.enumerator.StatusConfirmacao;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,6 +19,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class ConvidadoModel extends PessoaModel {
 
     private String eventoId;
-    private StatusConfirmacao statusConfirmacao;
+    private com.easyevents.notification_service.domain.enumerator.StatusConfirmacao statusConfirmacao;
 
 }

@@ -11,5 +11,5 @@ public class EventEmailRequest {
     private String organizerName;
     private String eventDateTime; // Format: "dd/MM/yyyy HH:mm"
     private String eventLocation;
-    private List<String> emailList;
+    private List<String> guestList;
 }

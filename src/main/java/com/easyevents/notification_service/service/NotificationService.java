@@ -11,8 +11,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class NotificationService {
 
@@ -41,7 +39,7 @@ public class NotificationService {
     }
 
     public ResponseEntity<String> sendEventEmails(EventEmailRequest eventEmailRequest) {
-        if (eventEmailRequest.getEmailList() == null || eventEmailRequest.getEmailList().isEmpty()) {
+        if (eventEmailRequest.getGuestList() == null || eventEmailRequest.getGuestList().isEmpty()) {
             logger.warn("A lista de emails está vazia ou nula.");
             return ResponseEntity.badRequest().body("A lista de emails está vazia ou nula.");
         }
@@ -77,7 +75,7 @@ public class NotificationService {
         String eventDateTime = eventEmailRequest.getEventDateTime();
         String eventLocation = eventEmailRequest.getEventLocation();
 
-        for (String recipient : eventEmailRequest.getEmailList()) {
+        for (String recipient : eventEmailRequest.getGuestList()) {
             String body = String.format(
                     """
                     Olá,
@@ -98,6 +96,7 @@ public class NotificationService {
             );
             sendEmail(recipient, subject, body);
         }
+
         return ResponseEntity.ok("Emails enviados com sucesso para os convidados!");
     }
 }
