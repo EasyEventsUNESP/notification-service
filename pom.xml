@@ -12,7 +12,7 @@
 	<artifactId>notification-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>auth-service</name>
-	<description>Serviço orientado a autenticação no sistema. Verificação de usuários, criação e deleção. (CRUD)</description>
+	<description>Serviço orientado a notificação através de e-mails</description>
 	<url/>
 	<licenses>
 		<license/>
