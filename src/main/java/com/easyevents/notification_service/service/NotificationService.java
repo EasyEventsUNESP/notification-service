@@ -41,6 +41,35 @@ public class NotificationService {
     }
 
     public ResponseEntity<String> sendEventEmails(EventEmailRequest eventEmailRequest) {
+        if (eventEmailRequest.getEmailList() == null || eventEmailRequest.getEmailList().isEmpty()) {
+            logger.warn("A lista de emails está vazia ou nula.");
+            return ResponseEntity.badRequest().body("A lista de emails está vazia ou nula.");
+        }
+
+        if (eventEmailRequest.getEventoId() == null || eventEmailRequest.getEventoId().isEmpty()) {
+            logger.warn("O ID do evento está vazio ou nulo.");
+            return ResponseEntity.badRequest().body("O ID do evento está vazio ou nulo.");
+        }
+
+        if (eventEmailRequest.getEventTitle() == null || eventEmailRequest.getEventTitle().isEmpty()) {
+            logger.warn("O título do evento está vazio ou nulo.");
+            return ResponseEntity.badRequest().body("O título do evento está vazio ou nulo.");
+        }
+
+        if (eventEmailRequest.getOrganizerName() == null || eventEmailRequest.getOrganizerName().isEmpty()) {
+            logger.warn("O nome do organizador está vazio ou nulo.");
+            return ResponseEntity.badRequest().body("O nome do organizador está vazio ou nulo.");
+        }
+
+        if (eventEmailRequest.getEventDateTime() == null || eventEmailRequest.getEventDateTime().isEmpty()) {
+            logger.warn("A data e hora do evento estão vazias ou nulas.");
+            return ResponseEntity.badRequest().body("A data e hora do evento estão vazias ou nulas.");
+        }
+
+        if (eventEmailRequest.getEventLocation() == null || eventEmailRequest.getEventLocation().isEmpty()) {
+            logger.warn("O local do evento está vazio ou nulo.");
+            return ResponseEntity.badRequest().body("O local do evento está vazio ou nulo.");
+        }
         String subject = "Convite para " + eventEmailRequest.getEventTitle();
         String eventoId = eventEmailRequest.getEventoId();
         String eventTitle = eventEmailRequest.getEventTitle();
@@ -50,14 +79,21 @@ public class NotificationService {
 
         for (String recipient : eventEmailRequest.getEmailList()) {
             String body = String.format(
-                    "Olá,\n\nVocê foi convidado para participar do evento \"%s\", organizado por %s.\n\n" +
-                            "Detalhes do evento:\n" +
-                            "Data e Hora: %s\n" +
-                            "Local: %s\n\n" +
-                            "Por favor, confirme ou recuse sua presença ao clickar nos links abaixo:\n\n" +
-                            "Confirmar presença: http://localhost:3002/guest/confirmar/%s/%s\n" +
-                            "Negar presença: http://localhost:3002/guest/negar/%s/%s\n\n" +
-                            "Aguardamos ansiosamente sua resposta!",
+                    """
+                    Olá,
+                
+                    Você foi convidado para participar do evento "%s", organizado por %s.
+                
+                    Detalhes do evento:
+                    Data e Hora: %s
+                    Local: %s
+                
+                    Por favor, confirme ou recuse sua presença ao clickar nos links abaixo:
+                
+                    Confirmar presença: http://localhost:3002/guest/confirmar/%s/%s
+                    Negar presença: http://localhost:3002/guest/negar/%s/%s
+                
+                    Aguardamos ansiosamente sua resposta!""",
                     eventTitle, organizerName, eventDateTime, eventLocation, eventoId, recipient, eventoId, recipient
             );
             sendEmail(recipient, subject, body);
