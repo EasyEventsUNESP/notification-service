@@ -205,7 +205,7 @@ public class NotificationService {
                 1. Acesse o sistema imediatamente usando esta senha
                 2. Altere para uma nova senha de sua preferência
                 
-                Acesse o sistema através do link: http://localhost:3000/login
+                Acesse o sistema através do link: http://localhost:5173/login
                 
                 Esta senha temporária expirará em 24 horas por motivos de segurança.
                 
